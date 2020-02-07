@@ -17,3 +17,20 @@ Expecting %v but got %v
 	basicTesting(t, "IKAN", "SAPI", 4)
 	basicTesting(t, "HITAM", "PUTIH", 4)
 }
+
+func TestCountTransformationStepWrapper(t *testing.T) {
+	basicTesting := func(t *testing.T, input string, expected int) {
+		if output := CountTransformationStepWrapper(input); output != expected {
+			t.Errorf(`
+Test Failed with input : %s
+Expecting %v but got %v
+		`, input, expected, output)
+		}
+	}
+	basicTesting(t, "BAYAM AYAM", 1)
+	basicTesting(t, "IKAN SAPI", 4)
+	basicTesting(t, "HITAM PUTIH", 4)
+	basicTesting(t, "BAYAMAYAM", 9)
+	basicTesting(t, "ikan SAPI", 4)
+	basicTesting(t, "HiTAM PUtIH", 4)
+}
